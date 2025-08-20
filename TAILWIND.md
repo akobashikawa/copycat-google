@@ -47,6 +47,42 @@ Esta guía documenta todos los casos de uso de Tailwind CSS utilizados en la ré
 
 **Concepto clave**: Con flexbox, `justify-content` trabaja en el eje principal y `align-items` en el eje secundario.
 
+### Decisión de Diseño: Centrado Clásico vs. Google Moderno
+```html
+<!-- Nuestro approach: Centrado vertical perfecto -->
+<main class="flex-1 flex flex-col justify-center items-center">
+    <div><!-- Logo --></div>
+    <div><!-- Búsqueda --></div>
+    <div><!-- Botones --></div>
+</main>
+```
+
+**Google actual vs. Nuestra versión:**
+- **Google moderno**: Logo posicionado más arriba, no centrado perfectamente
+- **Nuestra implementación**: Logo y contenido centrados verticalmente
+
+**¿Por qué mantuvimos el centrado clásico?**
+
+1. **🎨 Estética superior**: El centrado perfecto es más elegante y visualmente equilibrado
+2. **📱 Responsive nativo**: Funciona mejor en diferentes tamaños de pantalla
+3. **🎭 Tradición histórica**: Las versiones originales de Google usaban este centrado
+4. **⚖️ Coherencia visual**: Mantiene armonía entre header, main y footer
+5. **🧭 UX mejorada**: Especialmente en dispositivos móviles
+
+**Ventajas técnicas del centrado con Flexbox:**
+```css
+/* Traducción a CSS */
+.main {
+    flex: 1;                    /* Ocupa todo el espacio disponible */
+    display: flex;
+    flex-direction: column;     /* Elementos en columna */
+    justify-content: center;    /* Centrado vertical perfecto */
+    align-items: center;        /* Centrado horizontal */
+}
+```
+
+**Filosofía de diseño**: A veces la **coherencia estética** y la **usabilidad** son más importantes que replicar cada pixel exacto. Nuestra versión honra mejor el **espíritu original** de Google.
+
 ---
 
 ## 2. Sistema de Flexbox
@@ -556,6 +592,13 @@ Usamos la escala de Tailwind (4, 6, 8, etc.) para mantener consistencia visual.
 ### 5. **Agrupación Lógica**
 Relacionamos elementos con contenedores `group` para interacciones complejas.
 
+### 6. **Decisiones de Diseño Conscientes**
+**Centrado clásico vs. Modernización**: Priorizamos la estética clásica y la usabilidad sobre la replicación pixel-perfect del Google actual. Nuestro centrado vertical perfecto:
+- Mantiene la tradición histórica de Google
+- Proporciona mejor experiencia responsive
+- Crea mayor coherencia visual
+- Funciona superior en móviles
+
 ---
 
 ## 🚀 Consejos para Aprender Tailwind
@@ -587,7 +630,21 @@ Inspecciona elementos para ver cómo Tailwind compila a CSS real.
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 ```
 
-### 7. **Refina el Espaciado Iterativamente**
+### 8. **Toma Decisiones de Diseño Conscientes**
+```html
+<!-- No siempre copies exactamente -->
+<!-- Evalúa qué funciona mejor para tu contexto -->
+
+<!-- Google moderno: Logo arriba -->
+<!-- Nuestra decisión: Centrado clásico -->
+<main class="flex-1 flex flex-col justify-center items-center">
+```
+
+**Principios de decisión**:
+- Prioriza la **usabilidad** sobre la replicación exacta
+- Mantén **coherencia** en toda la interfaz
+- Considera el **contexto histórico** del diseño
+- Evalúa el **impacto responsive**
 ```html
 <!-- Proceso de optimización -->
 <!-- Paso 1: Valores estándar -->
