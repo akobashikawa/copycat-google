@@ -265,6 +265,15 @@ xl: 1280px
 ## 8. Tipografía
 
 ### Configuración de Fuentes Personalizada
+
+#### 1. Importación de Google Fonts
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+```
+
+#### 2. Configuración de Tailwind
 ```html
 <script>
     tailwind.config = {
@@ -272,6 +281,7 @@ xl: 1280px
             extend: {
                 fontFamily: {
                     'sans': ['Arial', 'Helvetica', 'sans-serif'],
+                    'google': ['"Google Sans"', 'Arial', 'sans-serif'],
                 }
             }
         }
@@ -279,11 +289,32 @@ xl: 1280px
 </script>
 ```
 
-**¿Por qué Arial?**
-Google utiliza Arial como fuente principal, mientras que Tailwind por defecto usa:
-`ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
+**¿Por qué necesitamos importar Google Sans?**
+- Google Sans no es una fuente del sistema operativo
+- Necesitamos cargarla desde Google Fonts para que esté disponible
+- Los `preconnect` optimizan la carga de la fuente
+- `display=swap` mejora la experiencia de usuario (muestra Arial mientras carga Google Sans)
 
-**Estrategia**: Sobrescribimos la fuente `sans` por defecto de Tailwind para usar Arial, manteniendo Helvetica y sans-serif como fallbacks.
+**Sistema de fuentes de Google:**
+- **Texto general**: Arial (para navegación, texto común)
+- **Botones principales**: "Google Sans" (para "Google Search" y "I'm Feeling Lucky")
+
+**Implementación:**
+```html
+<!-- Texto general (usa Arial por defecto) -->
+<a class="text-sm text-gray-700">Gmail</a>
+
+<!-- Botones principales (usa Google Sans) -->
+<button class="font-google">Google Search</button>
+```
+
+**¿Por qué esta estrategia?**
+Google utiliza una jerarquía tipográfica:
+1. **Google Sans** para elementos de marca y acciones principales
+2. **Arial** para navegación y contenido general
+3. Tailwind por defecto usaba Segoe UI, que no coincidía
+
+**Fallbacks**: Si Google Sans no está disponible, se usará Arial, y si Arial no está disponible, se usará sans-serif genérica.
 
 ### Escalas de Texto
 ```html
@@ -306,6 +337,16 @@ Google utiliza Arial como fuente principal, mientras que Tailwind por defecto us
 
 - `font-medium` = `font-weight: 500`
 - `font-bold` = `font-weight: 700`
+
+### Clases Personalizadas del Proyecto
+```html
+<button class="font-google">Google Search</button>
+```
+
+**`font-google`**: Aplica la fuente "Google Sans" específicamente para botones principales:
+- Definida en la configuración personalizada de Tailwind
+- Usada solo en botones "Google Search" e "I'm Feeling Lucky"
+- Fallback automático a Arial si Google Sans no está disponible
 
 ---
 
@@ -413,6 +454,21 @@ Agrupa clases que uses repetidamente en patrones reutilizables.
 ### 5. **Usa las DevTools**
 Inspecciona elementos para ver cómo Tailwind compila a CSS real.
 
+### 6. **Optimiza la Carga de Fuentes**
+```html
+<!-- Preconecta a Google Fonts para mejor rendimiento -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Carga solo los pesos que necesitas -->
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+```
+
+**Mejores prácticas para fuentes**:
+- Usa `preconnect` para optimizar la conexión
+- Especifica solo los pesos de fuente que necesitas (`400;500;700`)
+- Usa `display=swap` para mejor experiencia de usuario
+- Define fallbacks en la configuración de Tailwind
+
 ---
 
 ## 📝 Resumen del Proyecto
@@ -431,17 +487,22 @@ En este proyecto de Google Copycat utilizamos:
 
 ### ⚙️ Configuración Especial
 
-**Fuente personalizada**: Configuramos Tailwind para usar Arial (como Google) en lugar de Segoe UI:
+**Sistema tipográfico de Google**: 
 ```javascript
 tailwind.config = {
     theme: {
         extend: {
             fontFamily: {
-                'sans': ['Arial', 'Helvetica', 'sans-serif'],
+                'sans': ['Arial', 'Helvetica', 'sans-serif'],        // Texto general
+                'google': ['"Google Sans"', 'Arial', 'sans-serif'],  // Botones principales
             }
         }
     }
 }
 ```
+
+**Jerarquía de fuentes**:
+- **Google Sans** (`font-google`) - Botones principales de búsqueda
+- **Arial** (por defecto) - Navegación, enlaces, texto general
 
 El resultado es una réplica pixel-perfect de Google usando solo clases utilitarias, sin CSS personalizado.
