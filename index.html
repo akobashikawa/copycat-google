@@ -104,13 +104,23 @@
 
             <!-- Barra de búsqueda -->
             <div class="mb-8">
-                <div class="flex items-center w-full px-4 py-1 border border-gray-300 rounded-full shadow-md hover:shadow-lg transition-shadow focus-within:shadow-lg">
+                <div class="flex items-center w-full px-2 py-1 border border-gray-300 rounded-full shadow-md hover:shadow-lg transition-shadow focus-within:shadow-lg">
                     <button class="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Buscar">
                         <svg width="20" height="20" viewBox="0 0 24 24" class="fill-gray-600">
                             <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                         </svg>
                     </button>
-                    <input type="text" class="flex-1 mx-4 outline-none text-lg" aria-label="Buscar" autocomplete="off">
+                    <input type="text" id="searchInput" class="flex-1 mx-2 outline-none text-lg" aria-label="Buscar" autocomplete="off">
+                    
+                    <!-- Botón de limpiar (X) - Solo visible cuando hay texto -->
+                    <button id="clearButton" class="p-2 hover:bg-gray-100 rounded-full transition-colors hidden" aria-label="Limpiar búsqueda" onclick="clearSearch()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="fill-gray-600">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Línea divisoria después del botón X -->
+                    <div id="dividerLine" class="w-px h-8 bg-gray-300 mx-2 hidden"></div>
                     <!-- Search by voice con tooltip -->
                     <div class="relative group">
                         <button class="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Búsqueda por voz">
@@ -176,5 +186,35 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Funcionalidad del botón de limpiar búsqueda
+        const searchInput = document.getElementById('searchInput');
+        const clearButton = document.getElementById('clearButton');
+        const dividerLine = document.getElementById('dividerLine');
+
+        // Función para mostrar/ocultar el botón de limpiar y la línea divisoria
+        function toggleClearButton() {
+            if (searchInput.value.length > 0) {
+                clearButton.classList.remove('hidden');
+                dividerLine.classList.remove('hidden');
+            } else {
+                clearButton.classList.add('hidden');
+                dividerLine.classList.add('hidden');
+            }
+        }
+
+        // Función para limpiar la búsqueda
+        function clearSearch() {
+            searchInput.value = '';
+            clearButton.classList.add('hidden');
+            dividerLine.classList.add('hidden');
+            searchInput.focus();
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', toggleClearButton);
+        searchInput.addEventListener('keyup', toggleClearButton);
+    </script>
 </body>
 </html>
