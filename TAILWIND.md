@@ -81,7 +81,7 @@ Esta guía documenta todos los casos de uso de Tailwind CSS utilizados en la ré
 }
 ```
 
-**Filosofía de diseño**: A veces la **coherencia estética** y la **usabilidad** son más importantes que replicar cada pixel exacto. Nuestra versión honra mejor el **espíritu original** de Google.
+**Filosofía de diseño**: A veces la **coherencia estética** y la **usabilidad** son más importantes que replicar cada pixel exacto. Esta elección parece honrar mejor el **espíritu del diseño original** de Google.
 
 ---
 
