@@ -89,7 +89,7 @@ Esta guía documenta todos los casos de uso de Tailwind CSS utilizados en la ré
 
 ### Header Navigation
 ```html
-<nav class="flex justify-between items-center px-6 py-4">
+<nav class="flex justify-between items-center px-6 py-2">
 ```
 
 **Estrategia**: Distribución automática de elementos en el header.
@@ -97,7 +97,30 @@ Esta guía documenta todos los casos de uso de Tailwind CSS utilizados en la ré
 - `justify-between` = `justify-content: space-between` - Espacio máximo entre elementos
 - `items-center` = `align-items: center` - Alineación vertical centrada
 - `px-6` = `padding-left: 1.5rem; padding-right: 1.5rem`
-- `py-4` = `padding-top: 1rem; padding-bottom: 1rem`
+- `py-2` = `padding-top: 0.5rem; padding-bottom: 0.5rem` - **Ajuste clave para alineación**
+
+### Técnica de Alineación Horizontal por Padding
+```html
+<!-- Problema: Elementos no alineados horizontalmente -->
+<nav class="px-6 py-4">  <!-- Demasiado padding vertical -->
+    Gmail Images                    🧪 ⚏ 👤
+      ↑                              ↑
+   Desalineados verticalmente
+</nav>
+
+<!-- Solución: Ajuste sutil de padding -->
+<nav class="px-6 py-2">  <!-- Padding vertical reducido -->
+    Gmail Images              🧪 ⚏ 👤
+      ↑________________________↑
+         Perfectamente alineados
+</nav>
+```
+
+**¿Por qué funciona esta técnica?**
+1. **Conserva la estructura**: No necesita mover elementos entre contenedores
+2. **Ajuste fino**: `py-4` → `py-2` reduce 8px arriba y abajo
+3. **Alineación visual**: Los elementos quedan en la misma línea horizontal
+4. **Simplicidad**: Un solo cambio de clase logra el resultado
 
 ### Group de Elementos con Espaciado
 ```html
@@ -592,7 +615,13 @@ Usamos la escala de Tailwind (4, 6, 8, etc.) para mantener consistencia visual.
 ### 5. **Agrupación Lógica**
 Relacionamos elementos con contenedores `group` para interacciones complejas.
 
-### 6. **Decisiones de Diseño Conscientes**
+### 7. **Refinamiento por Ajustes Sutiles**
+**Alineación mediante padding**: A veces la solución perfecta no requiere reestructurar HTML, sino ajustar sutilmente el espaciado. Cambiar `py-4` a `py-2` logró la alineación horizontal perfecta del header sin mover elementos.
+
+Principios:
+- Prueba ajustes de padding/margin antes de cambios estructurales
+- Los refinements sutiles son más elegantes que las reestructuraciones
+- Compara visualmente cada ajuste con el diseño original
 **Centrado clásico vs. Modernización**: Priorizamos la estética clásica y la usabilidad sobre la replicación pixel-perfect del Google actual. Nuestro centrado vertical perfecto:
 - Mantiene la tradición histórica de Google
 - Proporciona mejor experiencia responsive
@@ -630,7 +659,21 @@ Inspecciona elementos para ver cómo Tailwind compila a CSS real.
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 ```
 
-### 8. **Toma Decisiones de Diseño Conscientes**
+### 9. **Usa Ajustes Sutiles para Alineación Perfecta**
+```html
+<!-- A veces la solución no es mover elementos, sino ajustar espaciado -->
+<!-- Problema de alineación horizontal -->
+<nav class="px-6 py-4">  <!-- Padding excesivo -->
+
+<!-- Solución elegante -->
+<nav class="px-6 py-2">  <!-- Padding optimizado -->
+```
+
+**Principio de refinamiento fino**:
+- Antes de reestructurar HTML, prueba ajustar padding/margin
+- `py-4` → `py-2` puede resolver problemas de alineación
+- Los ajustes sutiles son más elegantes que cambios estructurales
+- Siempre compara visualmente con el diseño original
 ```html
 <!-- No siempre copies exactamente -->
 <!-- Evalúa qué funciona mejor para tu contexto -->
