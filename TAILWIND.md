@@ -264,6 +264,27 @@ xl: 1280px
 
 ## 8. Tipografía
 
+### Configuración de Fuentes Personalizada
+```html
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'sans': ['Arial', 'Helvetica', 'sans-serif'],
+                }
+            }
+        }
+    }
+</script>
+```
+
+**¿Por qué Arial?**
+Google utiliza Arial como fuente principal, mientras que Tailwind por defecto usa:
+`ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
+
+**Estrategia**: Sobrescribimos la fuente `sans` por defecto de Tailwind para usar Arial, manteniendo Helvetica y sans-serif como fallbacks.
+
 ### Escalas de Texto
 ```html
 <a class="text-sm">Gmail</a>
@@ -405,6 +426,22 @@ En este proyecto de Google Copycat utilizamos:
 - ✅ **Posicionamiento absoluto** para overlays
 - ✅ **Transiciones suaves** para mejor UX
 - ✅ **Tipografía consistente** con la escala de Tailwind
+- ✅ **Fuente Arial personalizada** para fidelidad con Google
 - ✅ **Colores semánticos** para comunicar función
+
+### ⚙️ Configuración Especial
+
+**Fuente personalizada**: Configuramos Tailwind para usar Arial (como Google) en lugar de Segoe UI:
+```javascript
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                'sans': ['Arial', 'Helvetica', 'sans-serif'],
+            }
+        }
+    }
+}
+```
 
 El resultado es una réplica pixel-perfect de Google usando solo clases utilitarias, sin CSS personalizado.

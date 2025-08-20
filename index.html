@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Arial', 'Helvetica', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Header con navegación superior -->
@@ -128,8 +139,8 @@
 
             <!-- Botones de búsqueda -->
             <div class="flex justify-center space-x-4 mb-8">
-                <button class="px-6 py-3 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded border border-gray-200 transition-colors">Google Search</button>
-                <button class="px-6 py-3 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded border border-gray-200 transition-colors">I'm Feeling Lucky</button>
+                <button class="px-6 py-3 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">Google Search</button>
+                <button class="px-6 py-3 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">I'm Feeling Lucky</button>
             </div>
 
             <!-- Idiomas disponibles -->

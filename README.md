@@ -41,6 +41,7 @@ Este proyecto es una implementación completa de la página principal de Google,
 
 - **HTML5** - Estructura semántica
 - **Tailwind CSS** - Framework de utilidades CSS
+  - Configuración personalizada para usar fuente Arial (fidelidad con Google)
 - **SVG** - Íconos y logo vectoriales
 
 ## 📁 Estructura del proyecto
